@@ -1,0 +1,56 @@
+public class RemoveKthNodeFromEnd {
+
+    private Node head;
+    private int length;
+
+    public RemoveKthNodeFromEnd(String value) {
+        Node newNode = new Node(value);
+        head = newNode;
+        length = 1;
+    }
+
+    class Node {
+        String value;
+        Node next;
+        Node(String value) {
+            this.value=value;
+        }
+    }
+
+    public void insert(String val) {
+
+        Node tmp = head;
+        if (head == null) {
+            head = new Node(val);
+        }else{
+            while(tmp.next != null){
+                tmp = tmp.next;
+            }
+            tmp.next = new Node(val);
+            length++;
+        }
+    }
+
+    public void print() {
+        Node tmp = head;
+        while(tmp != null) {
+            System.out.println(tmp.value);
+            tmp = tmp.next;
+        }
+    }
+
+    public void removeKthNodeFromEnd(int val) {
+        Node tmp = head;
+        Node prev = null;
+        int n = length-val;
+        for (int i=0; i<n ; i++) {
+            prev = tmp;
+            tmp = tmp.next;
+        }
+        if (prev==null){
+            head = head.next;
+        }else{
+            prev.next = tmp.next;
+        }
+    }
+}
